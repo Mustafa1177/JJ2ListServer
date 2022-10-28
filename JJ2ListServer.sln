@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ2ListServerLib", "JJ2ListServer\JJ2ListServerLib.csproj", "{F908FAA1-6423-4E77-873B-C1039C8A9F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ2ListServerApp", "JJ2ListServerApp\JJ2ListServerApp.csproj", "{FA91DF99-85A0-4A67-AB56-AD8DF8ACE2FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F908FAA1-6423-4E77-873B-C1039C8A9F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F908FAA1-6423-4E77-873B-C1039C8A9F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F908FAA1-6423-4E77-873B-C1039C8A9F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F908FAA1-6423-4E77-873B-C1039C8A9F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA91DF99-85A0-4A67-AB56-AD8DF8ACE2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA91DF99-85A0-4A67-AB56-AD8DF8ACE2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA91DF99-85A0-4A67-AB56-AD8DF8ACE2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA91DF99-85A0-4A67-AB56-AD8DF8ACE2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {531BBE4B-6435-40FA-8235-47FD911BF16F}
+	EndGlobalSection
+EndGlobal

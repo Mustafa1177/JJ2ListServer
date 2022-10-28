@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JJ2ListServerLib\JJ2ListServerLib.csproj" />
+  </ItemGroup>
+
 </Project>

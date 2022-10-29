@@ -64,7 +64,7 @@ namespace JJ2ListServerLib.Listeners
                     GameServer server = l.Servers[serverID];
                     res.Append(server.IP); res.Append(':');
                     res.Append(server.Port); res.Append(' ');
-                    res.Append(server.Location.ToString().ToLower()); res.Append(' ');
+                    res.Append(server.Location == ServerLocation.LOCAL? "local " : "mirror ");
                     res.Append(server.IsPrivate? "private " : "public ");
                     res.Append(GetGameTypeName(server.GameType)); res.Append(' ');
                     res.Append("1." +  new string(server.Version,0,4)); res.Append(' ');

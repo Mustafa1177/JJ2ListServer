@@ -63,9 +63,8 @@ namespace JJ2ListServerLib.Listeners
 
             // Wait until a connection is made and processed before
             // continuing.
-            tcpClientConnected.WaitOne();
+            /////////tcpClientConnected.WaitOne();
         }
-
 
         private void OnClientConnect(IAsyncResult ar)
         {

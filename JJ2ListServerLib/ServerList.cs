@@ -22,6 +22,26 @@ namespace JJ2ListServerLib
             return false;
         }
 
+        public void AddRange(ICollection<GameServer> servers)
+        {
+            foreach (GameServer server in servers)
+                Add(server);
+        }
+
+        public void AddRange(ServerList list)
+        {
+            foreach (string serverID in list.Servers.Keys)
+                Add(list.Servers[serverID]);
+        }
+
+        public static ServerList operator +(ServerList c1, ServerList c2)
+        {
+            ServerList res = new ServerList();
+            res.AddRange(c1);
+            res.AddRange(c2);
+            return res;
+        }
+
         public void Remove(GameServer server)
         {
             string key = server.IP + ":" + server.Port;

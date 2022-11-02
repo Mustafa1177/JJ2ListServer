@@ -13,6 +13,9 @@ namespace JJ2ListServerLib.Listeners
 
         private TcpListener sckt;
 
+        public delegate void OnListRequestHandler(  object sender, EndPoint remoteHost, ref ServerList srcList);
+        public event OnListRequestHandler OnListRequest;
+
         public ASCIIListListener(ServerList srcServerList = null)
         {
             SourceServerList = srcServerList != null? srcServerList : new ServerList();
@@ -40,9 +43,10 @@ namespace JJ2ListServerLib.Listeners
             return true;
         }
 
-        public void SendList(TcpClient client)
+        public void SendList(TcpClient client, ServerList srcList)
         {
-            byte[] packet = Encoding.ASCII.GetBytes(BuildASCIIServerList(this.SourceServerList));
+            byte[] packet = Encoding.ASCII.GetBytes(BuildASCIIServerList(srcList));
+            //byte[] packet = Encoding.ASCII.GetBytes(BuildASCIIServerList(this.SourceServerList));
             client.Client.Send(packet);
         }
 
@@ -106,7 +110,7 @@ namespace JJ2ListServerLib.Listeners
         private void DoBeginAcceptTcpClient(TcpListener listener)
         {
             // Set the event to nonsignaled state.
-            tcpClientConnected.Reset();
+            ////////tcpClientConnected.Reset();
 
             // Start to listen for connections from a client.
             Console.WriteLine("[ASCIIListListener] Waiting for a connection...");
@@ -117,16 +121,16 @@ namespace JJ2ListServerLib.Listeners
 
             // Wait until a connection is made and processed before
             // continuing.
-            tcpClientConnected.WaitOne();
+            ////////tcpClientConnected.WaitOne();
         }
 
 
         private void OnClientConnect(IAsyncResult ar)
         {
             TcpListener listener = (TcpListener)ar.AsyncState;
+
             GoHandleNewClient(ar);
             
-          
             // Process the connection here. (Add the client to a
             // server table, read data, etc.)
             Console.WriteLine("[ASCIIListListener] Client connected completed");
@@ -143,7 +147,14 @@ namespace JJ2ListServerLib.Listeners
             // End the operation and send data.
             using (TcpClient client = listener.EndAcceptTcpClient(ar))
             {
-                SendList(client);
+                ServerList srcList = this.SourceServerList;
+                if (OnListRequest != null)
+                {
+                    OnListRequest(this, client.Client.RemoteEndPoint, ref srcList);
+                }
+                    
+
+                SendList(client, srcList);
                 client.Client.Disconnect(false);
                 client.Close();
             }

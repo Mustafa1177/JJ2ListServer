@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
+using JJ2ListServerLib.DataClasses;
 
 namespace JJ2ListServerLib
 {
@@ -9,7 +10,7 @@ namespace JJ2ListServerLib
     {
         public static string DownloadASCIIList(string hostname = "list.jazzjackrabbit.com", int port = 10057)
         {
-            TcpClient client = new TcpClient(hostname,port);
+            TcpClient client = new TcpClient();
             client.Connect(hostname, port);
             if (client.Connected)
             {
@@ -24,8 +25,20 @@ namespace JJ2ListServerLib
             return string.Empty;
         }
 
-        public static List<DataClasses.GameServer> ParseASCIIList(string hostname = "list.jazzjackrabbit.com", int port = 10057)
+        public static List<GameServer> ParseASCIIList(string value)
         {
+            string[] serverLines = value.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            List<GameServer> res = new List<GameServer>(serverLines.Length - 1);
+            foreach(var line in serverLines)
+            {
+                if (!string.IsNullOrEmpty(line))
+                {
+                    GameServer server = GameServer.Parse(line);
+                    if (server != null)
+                        res.Add(server);
+                }
+            }
+            return res;
             return null;
         }
 
